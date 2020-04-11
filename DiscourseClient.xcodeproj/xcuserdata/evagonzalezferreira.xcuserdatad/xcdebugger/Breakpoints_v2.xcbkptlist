@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "12810E4B-1762-4706-8177-752A15BBF6C7"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "801BE02F-45C6-4F1B-AAE4-F4C4AA13B2C3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DiscourseClient/ViewModel/Categories/CategoriesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "getCategories()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "801BE02F-45C6-4F1B-AAE4-F4C4AA13B2C3 - 784c885c3391d92f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;DiscourseClient.CategoriesResponse, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in DiscourseClient.CategoriesViewModel.getCategories() -&gt; ()"
+                  moduleName = "DiscourseClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evagonzalezferreira/Documentos/KeepCoding/Concurrencia%20y%20Red/practica/DiscourseClient/DiscourseClient/ViewModel/Categories/CategoriesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "319">
+               </Location>
+               <Location
+                  uuid = "801BE02F-45C6-4F1B-AAE4-F4C4AA13B2C3 - 784c885c3391d92f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;DiscourseClient.CategoriesResponse, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in DiscourseClient.CategoriesViewModel.getCategories() -&gt; ()"
+                  moduleName = "DiscourseClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evagonzalezferreira/Documentos/KeepCoding/Concurrencia%20y%20Red/practica/DiscourseClient/DiscourseClient/ViewModel/Categories/CategoriesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "374">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8E39CF1-3DD4-43EA-9FD0-58C058ADB582"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DiscourseClient/ViewModel/AddTopic/AddTopicViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "submitButtonTapped(title:msg:date:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
