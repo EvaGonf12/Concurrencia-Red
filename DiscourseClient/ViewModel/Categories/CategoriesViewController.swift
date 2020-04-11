@@ -48,6 +48,21 @@ class CategoriesViewController: UIViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorPurpleText!]
         self.navigationController?.navigationBar.tintColor = colorPurple
+        
+        let logoImage = UIImage.init(named: "Logo")
+        let logoImageView = UIImageView.init(image: logoImage)
+        logoImageView.frame = CGRect(x:0.0,y:0.0, width:35, height:35)
+        logoImageView.contentMode = .scaleAspectFit
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.widthAnchor.constraint(equalToConstant: 35),
+            logoImageView.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        self.navigationItem.leftBarButtonItem =  imageItem
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        let rightReloadButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.2.circlepath"), style: .plain, target: self, action: #selector(reloadButtonTapped))
+        self.navigationItem.rightBarButtonItem = rightReloadButtonItem
     }
     
     override func viewDidLoad() {
