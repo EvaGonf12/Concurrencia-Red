@@ -14,14 +14,11 @@ struct CreateTopicRequest: APIRequest {
     typealias Response = AddNewTopicResponse
     
     let title: String
-    let raw: String
     let createdAt: String
     
     init(title: String,
-         raw: String,
          createdAt: String) {
         self.title = title
-        self.raw = raw
         self.createdAt = createdAt
     }
     
@@ -40,7 +37,7 @@ struct CreateTopicRequest: APIRequest {
     var body: [String : Any] {
         return [
             "title" : title,
-            "raw" : raw,
+            "raw" : title,
             "created_at" : createdAt
         ]
     }

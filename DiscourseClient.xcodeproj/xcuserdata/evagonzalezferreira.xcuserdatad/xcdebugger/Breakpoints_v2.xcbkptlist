@@ -32,7 +32,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
                   endingLineNumber = "59"
-                  offsetFromSymbolStart = "319">
+                  offsetFromSymbolStart = "268">
                </Location>
                <Location
                   uuid = "801BE02F-45C6-4F1B-AAE4-F4C4AA13B2C3 - 784c885c3391d92f"
@@ -47,7 +47,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
                   endingLineNumber = "59"
-                  offsetFromSymbolStart = "374">
+                  offsetFromSymbolStart = "320">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "submitButtonTapped(title:msg:date:)"
+            landmarkName = "submitButtonTapped(title:date:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

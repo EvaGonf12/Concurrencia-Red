@@ -71,7 +71,7 @@ class TopicsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//        viewModel.viewWasLoaded()
+        viewModel.viewWasLoaded()
     }
 
     @objc func plusButtonTapped() {
