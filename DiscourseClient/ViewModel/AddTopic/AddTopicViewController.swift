@@ -95,6 +95,9 @@ class AddTopicViewController: UIViewController {
         view = UIView()
         view.backgroundColor = colorBgLight
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorPurpleText!]
         self.navigationController?.navigationBar.tintColor = colorPurple
         
@@ -121,6 +124,9 @@ class AddTopicViewController: UIViewController {
             addTopicStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80),
             addTopicStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
+        self.topicTitleTextField.delegate = self
+        self.topicMessageTextField.delegate = self
+
 
         let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -139,6 +145,11 @@ class AddTopicViewController: UIViewController {
         let dateString = formatter.string(from: date)
         viewModel.submitButtonTapped(title: text, msg: message, date: dateString)
     }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        self.topicTitleTextField.resignFirstResponder()
+        self.topicMessageTextField.resignFirstResponder()
+    }
 
     fileprivate func showErrorAddingTopicAlert(error: String) {
         let alertMessage = NSLocalizedString("Error adding topic:\n'\(error)'\nPlease try again later", comment: "")
@@ -150,6 +161,13 @@ class AddTopicViewController: UIViewController {
         showAlert(alertMessage, "SUCCESS", "OK", {[weak self] in
             self?.viewModel.alertDismiss()
         })
+    }
+}
+
+extension AddTopicViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 

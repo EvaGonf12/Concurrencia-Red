@@ -113,6 +113,9 @@ class UserDetailViewController: UIViewController {
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
 
         view.addSubview(userIDStackView)
         NSLayoutConstraint.activate([
@@ -143,10 +146,12 @@ class UserDetailViewController: UIViewController {
             changeNameStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
         
+        self.textFieldUserName.delegate = self
+        
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.viewDidLoad()
@@ -162,6 +167,10 @@ class UserDetailViewController: UIViewController {
         showActionAlert(msg: "Do you want to change user name?", title: "Change User Name", actionTitle: "Change", actionStyle: .default, action: {[weak self] in
             self?.viewModel.submitButtonTapped(username: username, name: newName)
         })
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        self.textFieldUserName.resignFirstResponder()
     }
 
     fileprivate func updateUI() {
@@ -188,6 +197,13 @@ class UserDetailViewController: UIViewController {
     fileprivate func showErrorChangeNameDetailAlert(error: String) {
         let alertMessage: String = NSLocalizedString("Error change user name:\n'\(error)'\nPlease try again later", comment: "")
         showAlert(alertMessage, "ERROR", "OK", nil)
+    }
+}
+
+extension UserDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 
