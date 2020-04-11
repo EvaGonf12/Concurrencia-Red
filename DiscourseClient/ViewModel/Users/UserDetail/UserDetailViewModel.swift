@@ -25,6 +25,7 @@ class UserDetailViewModel {
     var labelUserIDText: String?
     var labelUserNameText: String?
     var labelUserUsername: String?
+    var userImageTemplate: String?
     var userCanEditName: Bool?
     
     weak var viewDelegate: UserDetailViewDelegate?
@@ -50,12 +51,20 @@ class UserDetailViewModel {
                         self?.labelUserNameText = userDetails.user.name
                         self?.labelUserUsername = userDetails.user.username
                         self?.userCanEditName = userDetails.user.canEditName
+                        self?.userImageTemplate = userDetails.user.avatarTemplate
                         DispatchQueue.main.async {
                             self?.viewDelegate?.userDetailFetched()
                         }
                 }
             })
         }
+    }
+    
+    func getURLAvatar() -> String {
+        guard let imageURL = self.userImageTemplate else {return ""}
+        let userPath = imageURL.replacingOccurrences(of: "{size}", with: "\(200)")
+        let url = apiURL + userPath
+        return url
     }
     
     func submitButtonTapped(username: String, name: String) {

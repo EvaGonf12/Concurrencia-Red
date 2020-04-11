@@ -34,7 +34,7 @@ class TopicDetailViewController: UIViewController {
     
     lazy var buttonDeleteTopic: UIButton = {
         let button = UIButton()
-        button.backgroundColor = colorError
+        button.backgroundColor = colorPink
         button.setTitle("Delete", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 25

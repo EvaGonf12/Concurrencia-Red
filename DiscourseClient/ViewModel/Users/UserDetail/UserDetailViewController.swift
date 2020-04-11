@@ -11,6 +11,14 @@ import UIKit
 /// ViewController que representa el detalle de un Topic
 class UserDetailViewController: UIViewController {
 
+    lazy var imageUser: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 25
+        image.clipsToBounds = true
+        return image
+    }()
+    
     lazy var labelUserID: UILabel = {
         let label = UILabel()
         label.textColor = colorPurpleText
@@ -28,13 +36,12 @@ class UserDetailViewController: UIViewController {
     lazy var textFieldUserName: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .line
+        textField.borderStyle = .none
         textField.layer.cornerRadius = 16
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.borderStyle = UITextField.BorderStyle.none
         textField.textColor = colorPurpleText
         return textField
     }()
-    
     
     lazy var buttonChangeName: UIButton = {
         let button = UIButton()
@@ -44,6 +51,15 @@ class UserDetailViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(changeNameButtonTapped), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var imageUserStackView: UIStackView = {
+        let imageUserStackView = UIStackView()
+        imageUserStackView.addArrangedSubview(imageUser)
+        imageUserStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageUserStackView.axis = .horizontal
+
+        return imageUserStackView
     }()
 
     lazy var userIDStackView: UIStackView = {
@@ -88,8 +104,6 @@ class UserDetailViewController: UIViewController {
         return userNameStackView
     }()
     
-    
-    
     lazy var changeNameStackView: UIStackView = {
         let changeNameStackView = UIStackView()
         changeNameStackView.addArrangedSubview(buttonChangeName)
@@ -116,12 +130,20 @@ class UserDetailViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
-
+        
+        view.addSubview(imageUserStackView)
+        NSLayoutConstraint.activate([
+            imageUserStackView.heightAnchor.constraint(equalToConstant: 200),
+            imageUserStackView.widthAnchor.constraint(equalToConstant: 200),
+            imageUserStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            imageUserStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        ])
+        
         view.addSubview(userIDStackView)
         NSLayoutConstraint.activate([
             userIDStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             userIDStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            userIDStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
+            userIDStackView.topAnchor.constraint(equalTo: imageUserStackView.bottomAnchor, constant: 20)
         ])
 
         view.addSubview(userUsernameStackView)
@@ -179,7 +201,23 @@ class UserDetailViewController: UIViewController {
         self.textFieldUserName.text = viewModel.labelUserNameText
         guard let nameCanChange = viewModel.userCanEditName else {return}
         self.buttonChangeName.isEnabled = nameCanChange
+        self.buttonChangeName.backgroundColor = nameCanChange ? colorPrimary : colorGrayText
         self.textFieldUserName.isEnabled = nameCanChange
+        self.textFieldUserName.borderStyle = nameCanChange ? .line : .none
+        self.textFieldUserName.borderStyle = nameCanChange ? UITextField.BorderStyle.roundedRect : UITextField.BorderStyle.none
+
+        DispatchQueue.global(qos: .userInteractive).async {[weak self] in
+            guard let urlString = self?.viewModel.getURLAvatar() else {return}
+            let url = URL(string: urlString);
+            do {
+                let imageData : Data = try Data.init(contentsOf: url!)
+                let bgImage = UIImage(data: imageData)
+                DispatchQueue.main.async {[weak self] in
+                    self?.imageUser.image = bgImage
+                }
+            } catch {}
+        }
+        
     }
     
     fileprivate func showSuccessChangeNameAlert() {
