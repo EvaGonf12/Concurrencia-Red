@@ -68,6 +68,9 @@ class TopicsViewModel {
     }
     
     func getLastestTopics() {
+        /*
+         Lo mismo, no hace falta cola global ni main.async puesto que se hace ya en SessionAPI
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.topicsDataManager.fetchAllTopics {[weak self] result in
                 switch result {
@@ -77,6 +80,10 @@ class TopicsViewModel {
                         }
                     case .success(let topicsInfo):
                         self?.topicViewModels.removeAll()
+                        /*
+                         Muy buena la de filtrar los topics por los que no están closed, y
+                         personalizar el topic con su autor. 👏
+                         */
                         let topics = topicsInfo.topicList.topics.filter { (topic) -> Bool in
                             return !topic.closed
                         }

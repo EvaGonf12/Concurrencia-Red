@@ -59,6 +59,12 @@ class UsersViewModel {
     }
     
     func getUsers() {
+        /*
+         El fetch no hace falta hacerlo en una global queue, pues el dataTask ya se ejecuta así por defecto.
+         No es que esté mal, funciona perfectamente, pero sobra.
+         Además, si te fijas, SessionAPI ya está llamando a los closures de salida dentro de un bloque
+         main.async, por lo que tampoco haría falta hacerlo. Lo mismo: no está mal, pero sobra.
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.usersDataManager.fetchAllUsers {[weak self] result in
                 switch result {

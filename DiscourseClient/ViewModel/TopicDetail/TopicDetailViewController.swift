@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Muy chulo el diseño y también me gusta mucho la idea de levantar el alertController para confirmar el borrado
+ */
+
 /// ViewController que representa el detalle de un Topic
 class TopicDetailViewController: UIViewController {
 

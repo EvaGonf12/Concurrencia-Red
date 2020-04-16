@@ -53,6 +53,9 @@ class CategoriesViewModel {
     }
     
     func getCategories() {
+        /*
+         Lo mismo, no hace falta cola global ni main.async
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.categoriesDataManager.fetchAllCategories {[weak self] result in
                 switch result {

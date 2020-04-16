@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Muy chulis los iconos y la limpieza del diseño 🎸
+ */
+
 /// ViewController que representa un listado de topics
 class TopicsViewController: UIViewController {
 

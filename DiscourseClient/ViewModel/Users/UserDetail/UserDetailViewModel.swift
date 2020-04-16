@@ -39,6 +39,9 @@ class UserDetailViewModel {
     }
     
     func viewDidLoad() {
+        /*
+         Lo mismo, no hce falta la cola global, ni el main.async, puesto que ya está hecho en SessionAPI.
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.userDetailDataManager.fetchUser(username: self.username, completion: {[weak self] result in
                 switch result {
@@ -68,6 +71,9 @@ class UserDetailViewModel {
     }
     
     func submitButtonTapped(username: String, name: String) {
+        /*
+         No hace falta el main.async
+         */
         self.userDetailDataManager.changeUserName(username: username, name: name) {[weak self] (result) in
             switch result {
                 case .failure(let error):

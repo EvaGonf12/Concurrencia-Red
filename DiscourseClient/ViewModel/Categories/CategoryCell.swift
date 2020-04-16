@@ -18,6 +18,10 @@ class CategoryCell: UITableViewCell {
     
     var viewModel: CategoryCellViewModel? {
         didSet {
+            /*
+             El didSet se llama cuando en cellForRowAtIndexPath asignamos el viewModel a la celda.
+             Esa asignación ya va en el main queue, por tanto no hace falta main.async.
+             */
             DispatchQueue.main.async {[weak self] in
                 self?.titleNameOutlet.text = NSLocalizedString("Title:", comment: "")
                 self?.textNameOutlet.text = self?.viewModel?.category.name

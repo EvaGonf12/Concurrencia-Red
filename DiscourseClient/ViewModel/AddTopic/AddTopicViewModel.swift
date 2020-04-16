@@ -39,6 +39,9 @@ class AddTopicViewModel {
          Si el resultado es success, avisar al coordinator
          Si la llamada falla, avisar al viewDelegate
          */
+        /*
+         No hace falta la cola global
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.dataManager.addTopic(title: title, createdAt: date) {[weak self] (result) in
                 switch result {

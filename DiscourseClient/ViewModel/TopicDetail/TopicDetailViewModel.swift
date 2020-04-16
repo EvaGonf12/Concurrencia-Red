@@ -37,6 +37,9 @@ class TopicDetailViewModel {
     }
     
     func viewDidLoad() {
+        /*
+         Lo mismo, no hace falta globan ni main.async
+         */
         DispatchQueue.global(qos: .userInteractive).async {
             self.topicDetailDataManager.fetchTopic(id: self.topicID, completion: {[weak self] result in
                 switch result {
@@ -66,9 +69,15 @@ class TopicDetailViewModel {
     }
     
     func deleteButtonTapped(topic id: String) {
+        /*
+         No hace falta main.async
+         */
         self.topicDetailDataManager.deleteTopic(id: id) {[weak self] (result) in
             switch result {
                 case .failure(let error):
+                    /*
+                     Bien por la gestión del error
+                     */
                     switch error._domain {
                         case "DiscourseClient.SessionAPIError":
                             if error as! SessionAPIError == SessionAPIError.emptyData {
